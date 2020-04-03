@@ -8,28 +8,36 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     </head>
     <body>
-        <div id="app" class="min-h-screen flex justify-center">
+        <div id="app" class="w-full min-h-screen items-center flex justify-center">
 
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                {{--@if (Route::has('login'))
+                    <div>
+                        @auth
+                            <a href="{{ url('/') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-            <h1>vv Composant vue vv</h1>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
 
-            <comptes></comptes>
+                <comptes></comptes> --}}
+
+                <formfacture class="w-1/4 mr-12"></formfacture>
+
+            <div class="w-1/4">
+                <stock></stock>
+            </div>
+
+
 
         </div>
 
