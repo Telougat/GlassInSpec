@@ -28,15 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     public function blacklists()
     {
         return $this->hasMany('App\Blacklist');
@@ -55,5 +46,15 @@ class User extends Authenticatable
     public function sales()
     {
         return $this->hasMany('App\Sale');
+    }
+
+    public function getUserName($userId)
+    {
+        $user = User::find($userId);
+
+        return array(
+            'surname' => $user->last_name,
+            'name' => $user->first_name
+        );
     }
 }

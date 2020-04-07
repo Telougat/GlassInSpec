@@ -1986,11 +1986,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "formfacture",
   data: function data() {
     return {
-      form: Object
+      form: Object,
+      isOk: false
     };
   },
   mounted: function mounted() {
@@ -1999,8 +2004,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleForm: function handleForm(event) {
-      console.log('oklm');
-      console.log(this.form);
+      var _this = this;
+
+      var data = new FormData(event.target);
+      axios.post('/api/newInvoice', data).then(function (response) {
+        _this.isOK = true;
+      });
       event.preventDefault();
     }
   }
@@ -37483,96 +37492,134 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "p-8 bg-green-600 rounded-lg" }, [
+    _c("form", { attrs: { id: "facture" } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr", { staticClass: "my-8 border-2" }),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _vm._m(5),
+      _vm._v(" "),
+      _vm._m(6),
+      _vm._v(" "),
+      _vm.isOk ? _c("div", [_c("p", [_vm._v("C'est bon !")])]) : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-8 bg-green-600 rounded-lg" }, [
-      _c("form", { attrs: { id: "facture" } }, [
-        _c("div", { staticClass: "flex justify-center" }, [
-          _c("h3", { staticClass: "text-3xl font-bold" }, [_vm._v("Facture")])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "my-8 border-2" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between" }, [
-          _c("p", { staticClass: "font-bold" }, [_vm._v("Responsable : ")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "font-bold text-red-800" }, [
-            _vm._v("ResponsableViaPHP")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between my-8" }, [
-          _c("p", { staticClass: "font-bold" }, [_vm._v("Nom du salarié : ")]),
-          _vm._v(" "),
+    return _c("div", { staticClass: "flex justify-center" }, [
+      _c("h3", { staticClass: "text-3xl font-bold" }, [_vm._v("Facture")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between" }, [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Responsable : ")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "font-bold text-red-800" }, [
+        _vm._v("ResponsableViaPHP")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between my-8" }, [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Nom du salarié : ")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "px-2 rounded-lg",
+        attrs: {
+          placeholder: "Ex: Armano Romani",
+          name: "salaried",
+          required: "",
+          type: "text"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between" }, [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Type : ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex justify-between w-1/3" }, [
+        _c("div", [
           _c("input", {
-            staticClass: "px-2 rounded-lg",
+            attrs: { id: "verre", type: "radio", name: "type", value: "0" }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "verre" } }, [_vm._v("Verre")])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("input", {
             attrs: {
-              placeholder: "Ex: Armano Romani",
-              name: "salaried",
-              required: "",
-              type: "text"
+              id: "sable",
+              type: "radio",
+              name: "type",
+              value: "1",
+              checked: ""
             }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between" }, [
-          _c("p", { staticClass: "font-bold" }, [_vm._v("Type : ")]),
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between w-1/3" }, [
-            _c("div", [
-              _c("input", {
-                attrs: { id: "verre", type: "radio", name: "verre" }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "verre" } }, [_vm._v("Verre")])
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("input", {
-                attrs: {
-                  id: "sable",
-                  type: "radio",
-                  name: "sable",
-                  checked: ""
-                }
-              }),
-              _vm._v(" "),
-              _c("label", { attrs: { for: "sable" } }, [_vm._v("Sable")])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between my-8" }, [
-          _c("p", { staticClass: "font-bold" }, [_vm._v("Nombre : ")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "px-2 rounded-lg",
-            attrs: { required: "", name: "number", value: "0", type: "number" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-between" }, [
-          _c("p", { staticClass: "font-bold" }, [_vm._v("Montant : ")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "px-2 rounded-lg",
-            attrs: { required: "", name: "amount", value: "0", type: "number" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-end mt-8" }, [
-          _c("input", {
-            staticClass:
-              "p-2 cursor-pointer rounded-lg hover:bg-red-500 font-bold",
-            attrs: { type: "submit", value: "Envoyer" }
-          })
+          _c("label", { attrs: { for: "sable" } }, [_vm._v("Sable")])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between my-8" }, [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Nombre : ")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "px-2 rounded-lg",
+        attrs: { required: "", name: "number", value: "0", type: "number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-between" }, [
+      _c("p", { staticClass: "font-bold" }, [_vm._v("Montant : ")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "px-2 rounded-lg",
+        attrs: { required: "", name: "amount", value: "0", type: "number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex justify-end mt-8" }, [
+      _c("input", {
+        staticClass: "p-2 cursor-pointer rounded-lg hover:bg-red-500 font-bold",
+        attrs: { type: "submit", value: "Envoyer" }
+      })
     ])
   }
 ]
@@ -50138,6 +50185,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50226,8 +50274,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/GlassInSpec/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/GlassInSpec/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/glass.local/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/glass.local/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

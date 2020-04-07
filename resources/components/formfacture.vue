@@ -24,12 +24,12 @@
                 <div class="flex justify-between w-1/3">
 
                     <div>
-                        <input id="verre" type="radio" name="verre"/>
+                        <input id="verre" type="radio" name="type" value="0"/>
                         <label for="verre">Verre</label>
                     </div>
 
                     <div>
-                        <input id="sable" type="radio" name="sable" checked>
+                        <input id="sable" type="radio" name="type" value="1" checked>
                         <label for="sable">Sable</label>
                     </div>
 
@@ -51,6 +51,10 @@
                 <input class="p-2 cursor-pointer rounded-lg hover:bg-red-500 font-bold" type="submit" value="Envoyer">
             </div>
 
+            <div v-if="isOk">
+                <p>C'est bon !</p>
+            </div>
+
         </form>
     </div>
 </template>
@@ -60,7 +64,8 @@
         name: "formfacture",
         data: function() {
             return {
-                form: Object
+                form: Object,
+                isOk: false
             }
         },
         mounted() {
@@ -70,9 +75,11 @@
         methods: {
             handleForm(event)
             {
-                console.log('oklm');
-
-                console.log(this.form);
+                let data = new FormData(event.target);
+                axios.post('/api/newInvoice', data)
+                .then((response) => {
+                    this.isOK = true;
+                });
 
                 event.preventDefault()
             }
